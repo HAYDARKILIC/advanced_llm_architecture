@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔥 BitWise-LLM-Forge
+# Advanced LLM Architectures & Optimization
 
 *Forging hardware-aware LLMs from first principles — in pure PyTorch.*
 
@@ -35,7 +35,7 @@ companion theory documents live under [`docs/theory/`](docs/theory).
 ## Quick start
 
 ```bash
-git clone https://github.com/HAYDARKILIC/bitwise-llm-forge.git
+git clone https://github.com/HAYDARKILIC/advanced_llm_architecture.git
 cd bitwise-llm-forge
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
