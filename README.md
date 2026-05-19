@@ -36,7 +36,7 @@ companion theory documents live under [`docs/theory/`](docs/theory).
 
 ```bash
 git clone https://github.com/HAYDARKILIC/advanced_llm_architecture.git
-cd bitwise-llm-forge
+cd advanced_llm_architecture
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 
