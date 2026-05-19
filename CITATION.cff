@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "BitWise-LLM-Forge: First-Principles Implementations of Modern LLM Architectures"
+message: "If you use this repository, please cite it as below."
+authors:
+  - family-names: "Kılıç"
+    given-names: "Haydar"
+repository-code: "https://github.com/HAYDARKILIC/bitwise-llm-forge"
+url: "https://github.com/HAYDARKILIC/bitwise-llm-forge"
+abstract: >
+  A graduate-level, six-week curriculum portfolio implementing modern
+  large-language-model optimization techniques from first principles in pure
+  PyTorch — BitNet b1.58 ternary weights, Test-Time Training layers,
+  differentiable logic networks, FlashAttention-style tiling, Rotary
+  Position Embedding with YaRN context extension, and an end-to-end
+  hardware-friendly miniature LLM. Produced for the course "Advanced LLM
+  Architectures & Optimization".
+keywords:
+  - "large language models"
+  - "quantization"
+  - "BitNet"
+  - "flash attention"
+  - "RoPE"
+  - "test-time training"
+  - "differentiable logic"
+  - "from-scratch implementation"
+version: "0.1.0"
+date-released: 2025-01-01

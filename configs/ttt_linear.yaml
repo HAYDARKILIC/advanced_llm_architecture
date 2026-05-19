@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------
+# TTT-Linear — Test-Time Training configuration (Sun et al., 2024)
+# ---------------------------------------------------------------------------
+# Drop-in replacement for a self-attention block.
+# Hidden state W_t is updated by inner-loop SGD on a self-supervised
+# reconstruction loss: ℓ(W; k_t, v_t) = ½ ‖W k_t − v_t‖².
+# ---------------------------------------------------------------------------
+
+ttt:
+  d_model: 384
+  inner_steps: 1
+  inner_lr: 1.0            # η; η=1 recovers linear attention
+  init: identity           # identity | zeros | xavier
+  qkv_bias: false
+  detach_state: false      # detach W_{t-1} from the outer graph each step
+
+train:
+  optimizer: adamw
+  lr: 5.0e-4               # outer-loop lr (η_outer)
+  betas: [0.9, 0.95]
+  weight_decay: 0.1
+  grad_clip: 1.0
+  batch_size: 32
+  seq_len: 2048
+  warmup_steps: 500
+  total_steps: 20000
+  precision: bf16
+  seed: 42
+
+eval:
+  benchmark_seq_lengths: [512, 1024, 2048, 4096, 8192]
+  compare_against: [naive_attention, linear_attention]

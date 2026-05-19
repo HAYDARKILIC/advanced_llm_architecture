@@ -1,0 +1,30 @@
+# ============================================================
+#  BitWise-LLM-Forge — runtime dependencies
+# ============================================================
+# Python >= 3.10 required.
+# For GPU support, install the matching torch wheel from
+# https://pytorch.org/get-started/locally/ BEFORE running pip install -r.
+# ============================================================
+
+torch>=2.3.0
+numpy>=1.26.0
+einops>=0.7.0
+pyyaml>=6.0
+tqdm>=4.66.0
+matplotlib>=3.8.0
+pandas>=2.2.0
+
+# Tokenization for the capstone mini-LLM
+tokenizers>=0.15.0
+sentencepiece>=0.2.0
+
+# Notebook execution
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipywidgets>=8.1.0
+
+# Light-weight datasets (TinyStories, WikiText-103-mini)
+datasets>=2.18.0
+
+# Memory / latency profiling utilities
+psutil>=5.9.0

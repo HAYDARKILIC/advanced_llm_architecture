@@ -1,0 +1,62 @@
+# ---------------------------------------------------------------------------
+# Mini-LLM Capstone (Week 6)
+# ---------------------------------------------------------------------------
+# End-to-end hardware-friendly model combining:
+#   • BitLinear   (ternary weights, absmean γ)
+#   • RoPE        (rotary positional encoding)
+#   • SwiGLU FFN  (gated linear unit)
+#   • RMSNorm     (pre-norm)
+#   • Tiled SDPA  (FlashAttention-style memory IO)
+# ---------------------------------------------------------------------------
+
+model:
+  name: mini_llm_capstone
+  vocab_size: 32000
+  d_model: 384
+  n_layers: 6
+  n_heads: 6
+  d_ff: 1024            # SwiGLU intermediate ≈ (8/3) * d_model, rounded to mult of 32
+  max_seq_len: 4096
+  attn_impl: tiled      # tiled | sdpa | naive
+  tie_embeddings: true
+
+quantization:
+  enabled: true
+  weight_bits: 1.58
+  activation_bits: 8
+  scale_init: absmean
+
+positional:
+  type: rope
+  base_theta: 10000.0
+  yarn:
+    enabled: true       # enable for context extension fine-tune
+    scale: 8.0          # 4k -> 32k
+    original_max_seq_len: 4096
+
+train:
+  optimizer: adamw
+  lr: 3.0e-4
+  betas: [0.9, 0.95]
+  weight_decay: 0.1
+  grad_clip: 1.0
+  batch_size: 64
+  seq_len: 1024
+  warmup_steps: 1000
+  total_steps: 100000
+  precision: bf16
+  log_every: 50
+  ckpt_every: 5000
+  seed: 42
+
+eval:
+  perplexity_context_lengths: [1024, 2048, 4096, 8192, 16384, 32768]
+  stride: 512
+  generation:
+    max_new_tokens: 256
+    temperature: 0.8
+    top_k: 40
+
+export:
+  format: bwf0          # custom packed ternary format (5 trits / byte)
+  out_dir: artifacts/quantized
