@@ -6,9 +6,6 @@
 
 `BitNet b1.58` · `TTT` · `FlashAttention` · `RoPE` · `YaRN` · `Differentiable Logic`
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch 2.3+](https://img.shields.io/badge/PyTorch-2.3+-EE4C2C.svg)](https://pytorch.org/)
-
 </div>
 
 ---
